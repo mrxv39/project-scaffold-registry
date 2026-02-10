@@ -29,8 +29,8 @@ describe("Regression: server boots without touching Prisma", () => {
     });
   });
 
-  afterAll(() => {
-    if (server) server.close();
+  afterAll(async () => {
+    if (server) await new Promise((resolve) => server.close(resolve));
   });
 
   it("/health works even if Prisma is mocked to throw", async () => {

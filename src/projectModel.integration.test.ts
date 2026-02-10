@@ -1,6 +1,9 @@
+
 import { describe, it, beforeAll, beforeEach, afterAll, expect } from 'vitest';
 import { execSync } from 'child_process';
 import { getPrismaClient } from './db/getPrismaClient';
+import type { PrismaClient } from '@prisma/client';
+import { ProjectStatus } from '@prisma/client';
 
 const dbUrl = process.env.DATABASE_URL;
 
@@ -12,7 +15,7 @@ if (!dbUrl) {
   });
 } else {
   describe('Prisma Project model integration', () => {
-    let prisma;
+    let prisma: PrismaClient;
 
     beforeAll(async () => {
       execSync('npx prisma generate', { stdio: 'inherit' });
@@ -33,11 +36,12 @@ if (!dbUrl) {
         name: 'Test Project',
         category: 'test',
         tags: ['integration', 'vitest'],
-        status: 'PENDING',
+        status: ProjectStatus.PENDING,
       };
       const created = await prisma.project.create({ data });
       const found = await prisma.project.findUnique({ where: { id: created.id } });
       expect(found).not.toBeNull();
+      if (!found) throw new Error('Expected project to exist');
       expect(found.name).toBe(data.name);
       expect(found.category).toBe(data.category);
       expect(found.tags).toEqual(data.tags);
@@ -46,9 +50,9 @@ if (!dbUrl) {
 
     it('can list projects with limit/offset', async () => {
       const projects = [
-        { name: 'A', category: 'cat', tags: [], status: 'PENDING' },
-        { name: 'B', category: 'cat', tags: [], status: 'ACTIVE' },
-        { name: 'C', category: 'cat', tags: [], status: 'ARCHIVED' },
+        { name: 'A', category: 'cat', tags: [], status: ProjectStatus.PENDING },
+        { name: 'B', category: 'cat', tags: [], status: ProjectStatus.ACTIVE },
+        { name: 'C', category: 'cat', tags: [], status: ProjectStatus.ARCHIVED },
       ];
       await prisma.project.createMany({ data: projects });
       const all = await prisma.project.findMany({ orderBy: { name: 'asc' } });
@@ -63,7 +67,7 @@ if (!dbUrl) {
         name: 'Defaults',
         category: 'misc',
         tags: [],
-        status: 'PENDING',
+        status: ProjectStatus.PENDING,
       };
       const created = await prisma.project.create({ data });
       expect(created.deployedUrl).toBe('');

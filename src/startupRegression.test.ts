@@ -44,8 +44,8 @@ describe("Startup regression: Express boots without DB", () => {
     });
   });
 
-  afterAll(() => {
-    if (server) server.close();
+  afterAll(async () => {
+    if (server) await new Promise((resolve) => server.close(resolve));
   });
 
   it("responds to /health with 200 and does not touch Prisma", async () => {
