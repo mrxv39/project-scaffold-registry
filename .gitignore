@@ -38,6 +38,15 @@ logs/
 *.log
 
 # =========================
+# Project-specific ignores
+# =========================
+web/
+.github/
+scripts/
+test/setup.ts
+test/projectApi.integration.test.ts
+
+# =========================
 # OS / Editor junk
 # =========================
 .DS_Store
