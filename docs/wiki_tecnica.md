@@ -2,11 +2,15 @@
 
 - Backend bootstrap completed (Node.js + TypeScript + Express)
 - /health endpoint implemented
-- Prisma integration planned but not fully initialized
-- Known issue:
-	- Server fails on startup if Prisma client is imported before generation
-	- Decision: pause execution and resume in next sprint with lazy-loading Prisma
-- No further backend execution should be attempted until Prisma setup is finalized
+# Prisma lazy-loading architecture
+
+- PrismaClient is never imported at module load time. Instead, the function `getPrismaClient()` dynamically imports `@prisma/client` only when needed, using `await import("@prisma/client")`.
+- This ensures that app startup and the `/health` endpoint do not touch Prisma or the database at all.
+- The server can start and respond to `/health` even if the Prisma client is not generated or the database is down.
+- Two startup regression tests enforce this:
+	- One test ensures importing and starting the app never touches Prisma or the DB.
+	- Another test mocks the Prisma accessor to throw if called, and verifies `/health` still works.
+- This architecture prevents accidental DB connections or Prisma initialization during startup, making the app robust to missing or broken database state.
 # Wiki tÃ©cnica â€“ project-scaffold-registry3
 
 ## Arquitectura

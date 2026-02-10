@@ -1,0 +1,291 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Run all tests",
+			"type": "shell",
+			"command": "npm test && node src/startupRegression.test.ts",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "test"
+		},
+		{
+			"label": "Run startup regression test",
+			"type": "shell",
+			"command": "node src/startupRegression.test.ts",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "test"
+		},
+		{
+			"label": "Run all tests with node environment",
+			"type": "shell",
+			"command": "npm test && node src/startupRegression.test.ts",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "test"
+		},
+		{
+			"label": "Run Vitest test suite",
+			"type": "shell",
+			"command": "npm test",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "test"
+		},
+		{
+			"label": "Run Vitest test suite (startup regression)",
+			"type": "shell",
+			"command": "npm test",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "test"
+		},
+		{
+			"label": "Run Vitest test suite (startup regression)",
+			"type": "shell",
+			"command": "npm test",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "test"
+		},
+		{
+			"label": "Run Vitest test suite (startup regression)",
+			"type": "shell",
+			"command": "npm test",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "test"
+		},
+		{
+			"label": "Run Vitest test suite (startup regression)",
+			"type": "shell",
+			"command": "npm test",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "test"
+		},
+		{
+			"label": "Run Vitest test suite (startup regression)",
+			"type": "shell",
+			"command": "npm test",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "test"
+		},
+		{
+			"label": "Run Vitest test suite (startup regression, clean)",
+			"type": "shell",
+			"command": "npm test",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "test"
+		},
+		{
+			"label": "Run Vitest test suite (final check)",
+			"type": "shell",
+			"command": "npm test",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "test"
+		},
+		{
+			"label": "Run Vitest test suite (final, error debug)",
+			"type": "shell",
+			"command": "npm test",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "test"
+		},
+		{
+			"label": "Run all Vitest regression tests",
+			"type": "shell",
+			"command": "npm test",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "test"
+		},
+		{
+			"label": "Run dev server and verify /health",
+			"type": "shell",
+			"command": "npm run dev",
+			"args": [],
+			"isBackground": true,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "dev"
+		},
+		{
+			"label": "Fetch /health endpoint for dev server",
+			"type": "shell",
+			"command": "curl -i http://127.0.0.1:3000/health",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "test"
+		},
+		{
+			"label": "Run all tests",
+			"type": "shell",
+			"command": "npm test",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "test"
+		},
+		{
+			"label": "Prisma generate",
+			"type": "shell",
+			"command": "npm run prisma:generate",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Install Prisma CLI",
+			"type": "shell",
+			"command": "npm install --save-dev prisma",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Prisma generate (after install)",
+			"type": "shell",
+			"command": "npx prisma generate",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Run all Vitest tests (final confirmation)",
+			"type": "shell",
+			"command": "npm test",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "test"
+		},
+		{
+			"label": "Run all Vitest tests (with Prisma accessor check)",
+			"type": "shell",
+			"command": "npm test",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "test"
+		},
+		{
+			"label": "Run all Vitest tests (final, static Prisma check)",
+			"type": "shell",
+			"command": "npm test",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "test"
+		},
+		{
+			"label": "Run all Vitest tests (final, static Prisma check only)",
+			"type": "shell",
+			"command": "npm test",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "test"
+		},
+		{
+			"label": "Run all Vitest tests (final confirmation)",
+			"type": "shell",
+			"command": "npm test",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "test"
+		},
+		{
+			"label": "Run dev server",
+			"type": "shell",
+			"command": "npm run dev",
+			"args": [],
+			"isBackground": true,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "dev"
+		},
+		{
+			"label": "Fetch /health endpoint for dev server (final confirmation)",
+			"type": "shell",
+			"command": "curl -i http://127.0.0.1:3000/health",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "test"
+		}
+	]
+}

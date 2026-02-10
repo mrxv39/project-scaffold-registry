@@ -23,3 +23,14 @@ AHORA:
 IMPACTO:
 - Solid foundation ready to continue backend work in next sprint
 - No production features yet
+
+## 2026-02-10 —
+ANTES:
+- The server could fail to start if the database or Prisma client was not ready.
+
+AHORA:
+- The server starts independently of the database.
+- Prisma is initialized lazily only when needed.
+
+IMPACTO:
+- Improved startup reliability and safer deployments.
