@@ -1,3 +1,18 @@
+
+# 30-Second Smoke Test
+
+1. **Backend**
+   - `npm test` (all tests pass)
+   - `npm run dev` (or `npm start`)
+   - `curl http://localhost:3000/health` → expect 200
+   - `curl http://localhost:3000/db/health` → expect 200 if DB up, 503 if not
+
+2. **Frontend**
+   - `cd web && npm run dev`
+   - Open http://localhost:5173/projects
+   - Create a project (fill name, submit)
+   - See it listed in the projects list
+
 # Developer Smoke Checklist
 
 Quick steps to verify your local environment and DB setup:

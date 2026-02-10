@@ -15,10 +15,15 @@ Este endpoint sirve para comprobar que el servidor está levantado y funcionando
 
 **Importante:** `/health` responde correctamente incluso si la base de datos no está disponible. Esto permite verificar el servicio sin depender de la DB.
 
+
 ## Cómo arrancar (nivel usuario técnico)
 1) Instala dependencias: `npm install`
 2) Consulta scripts disponibles: `npm run`
 3) Ejecuta el script de arranque que tenga el proyecto (por ejemplo `npm run dev` o `npm start` si existen)
+
+### Nota sobre tests
+- Algunas pruebas requieren base de datos.
+- Si DATABASE_URL no está configurado, esas pruebas se omiten automáticamente.
 
 ## Funcionalidades previstas (alto nivel)
 - Listado de proyectos y su estado

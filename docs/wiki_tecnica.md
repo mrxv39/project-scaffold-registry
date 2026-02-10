@@ -31,6 +31,11 @@
 - `src/startupPrismaMissingRegression.test.ts`
 	- Mockea el accessor de Prisma para que lance error si se llama, y valida que `/health` sigue funcionando.
 
+## DB Integration Tests Strategy
+- Integration tests use a helper `describeDb` located in test/utils/db.ts
+- Tests requiring DATABASE_URL are automatically skipped if the variable is not present
+- This prevents local crashes and allows CI to run without a database
+- Vitest runs in non-watch mode for deterministic exits
 ## Decisiones técnicas relevantes
 - Separar “construir app” vs “escuchar en puerto” para:
 	- tests deterministas
