@@ -13,10 +13,13 @@
     "prisma:migrate:dev": "prisma migrate dev",
     "prisma:migrate:deploy": "prisma migrate deploy",
     "prisma:studio": "prisma studio",
-    "audit:tests": "ts-node scripts/audit-tests.ts"
+    "audit:tests": "ts-node scripts/audit-tests.ts",
+    "db:prepare": "prisma generate && prisma migrate deploy",
+    "test:db": "npm run db:prepare && vitest run --watch=false"
   },
   "dependencies": {
     "@prisma/client": "^5.22.0",
+    "dotenv": "^17.2.4",
     "express": "^4.18.2"
   },
   "devDependencies": {

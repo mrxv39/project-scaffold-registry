@@ -1,5 +1,5 @@
 // C:\Users\Usuario\projects\project-scaffold-registry\src\db\projectRepo.ts
-import { getPrismaClient } from "./getPrismaClient";
+import { getPrismaClient } from "../infrastructure/db/prismaClientFactory";
 import type { Project, Prisma } from "@prisma/client";
 
 export async function createProject(

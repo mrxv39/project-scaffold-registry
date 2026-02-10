@@ -9,7 +9,10 @@ const dbHealthRouter = Router();
 dbHealthRouter.get('/health', async (req: Request, res: Response) => {
   res.set('Cache-Control', 'no-store');
   if (!process.env.DATABASE_URL) {
+    console.log('[DB] DATABASE_URL missing');
     return res.status(503).json({ status: 'db_unavailable', reason: 'DATABASE_URL missing' });
+  } else {
+    console.log('[DB] DATABASE_URL detected');
   }
   try {
     const prisma = await getPrismaClient();

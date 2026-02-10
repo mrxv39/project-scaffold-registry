@@ -30,8 +30,11 @@ router.get("/", async (req: Request, res: Response) => {
   try {
     const projects = await listProjects(safeLimit, safeOffset);
     return res.status(200).json(projects);
-  } catch {
-    return res.status(503).json({ status: "db_unavailable", reason: "prisma_unavailable" });
+  } catch (err: any) {
+    if (!process.env.DATABASE_URL) {
+      return respondDbUnavailable(res);
+    }
+    throw err;
   }
 });
 
@@ -59,8 +62,11 @@ router.post("/", async (req: Request, res: Response) => {
   try {
     const created = await createProject({ name, category, status });
     return res.status(201).json(created);
-  } catch {
-    return res.status(503).json({ status: "db_unavailable", reason: "prisma_unavailable" });
+  } catch (err: any) {
+    if (!process.env.DATABASE_URL) {
+      return respondDbUnavailable(res);
+    }
+    throw err;
   }
 });
 
@@ -77,8 +83,11 @@ router.get("/:id", async (req: Request, res: Response) => {
     const project = await getProjectById(id);
     if (!project) return res.status(404).json({ status: "not_found" });
     return res.status(200).json(project);
-  } catch {
-    return res.status(503).json({ status: "db_unavailable", reason: "prisma_unavailable" });
+  } catch (err: any) {
+    if (!process.env.DATABASE_URL) {
+      return respondDbUnavailable(res);
+    }
+    throw err;
   }
 });
 
@@ -98,8 +107,11 @@ router.delete("/:id", async (req: Request, res: Response) => {
     const deleted = await deleteProjectById(id);
     if (!deleted) return res.status(404).json({ status: "not_found" });
     return res.status(204).send();
-  } catch {
-    return res.status(503).json({ status: "db_unavailable", reason: "prisma_unavailable" });
+  } catch (err: any) {
+    if (!process.env.DATABASE_URL) {
+      return respondDbUnavailable(res);
+    }
+    throw err;
   }
 });
 
