@@ -4,13 +4,20 @@
 project-scaffold-registry es un servicio para registrar y consultar proyectos creados con un scaffold, con el objetivo de centralizar estado y metadatos.
 
 
-## Cómo usar la página de proyectos
 
 - Abre la página de proyectos en desarrollo: http://localhost:5173/projects
 - Para crear un proyecto, escribe un nombre en el campo y haz clic en "Create".
 - Si la base de datos no está configurada, verás el mensaje "Database not configured" y el formulario estará deshabilitado.
 - El listado de proyectos se actualiza automáticamente al crear uno nuevo.
 - El endpoint `/health` sigue funcionando aunque la base de datos no esté disponible.
+
+### Consultar un proyecto específico
+Ahora puedes ver un proyecto concreto usando:
+`GET /api/projects/:id`
+
+Esto es útil para enlaces directos o para ver los detalles de un solo proyecto.
+Si el proyecto no existe, la respuesta será "not_found".
+Si la base de datos no está configurada, verás un mensaje de "db_unavailable".
 
 
 ## Comprobación rápida: /health y /db/health

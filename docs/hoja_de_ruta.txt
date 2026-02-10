@@ -16,11 +16,13 @@
 - API: CRUD mínimo de Project (v1) [PARCIAL: list + create implementados, con tests]
 - Web UI [PARCIAL: página /projects implementada (create + list)]
 - Endpoint /db/health (readiness) (~60–90m) [COMPLETADO]
+- GET /api/projects/:id (~60–90m) [COMPLETADO]
 
 
 ## Por implementar – CRÍTICAS
 API: CRUD mínimo de Project (v1)
-	- [CRÍTICO: pendiente] update (PUT/PATCH), delete (DELETE), get by id (GET /api/projects/:id)
+	- [CRÍTICO: pendiente] update (PUT/PATCH)
+	- [CRÍTICO: pendiente] delete (DELETE)
 	- [CRÍTICO: pendiente] Tests API (supertest) para operaciones restantes
 
 

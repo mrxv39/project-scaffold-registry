@@ -1,3 +1,13 @@
+# 2026-02-10 — feat: add GET /api/projects/:id
+ANTES:
+- Only project list and create endpoints existed.
+
+AHORA:
+- Projects can be fetched individually via /api/projects/:id.
+- Create endpoint applies default category/status to satisfy Prisma schema.
+
+IMPACTO:
+- Enables direct navigation to a single project and stabilizes create flow.
 # 2026-02-10 — feat: readiness endpoint /db/health
 ANTES:
 - No endpoint para verificar readiness real de la base de datos.
