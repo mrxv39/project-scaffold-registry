@@ -1,7 +1,9 @@
 import express, { Request, Response, NextFunction } from 'express';
 import { getPrismaClient } from './infrastructure/db/prismaClientFactory';
 
+
 const app = express();
+app.use(express.json());
 
 // Simple request logger
 app.use((req: Request, res: Response, next: NextFunction) => {
@@ -11,10 +13,15 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 
 // No DB connection at startup. Use getPrismaClient() inside route handlers or services.
 
-// /health endpoint
+
+// /health endpoint (must remain DB-independent)
 app.get('/health', (req: Request, res: Response) => {
   res.status(200).json({ ok: true });
 });
+
+// Projects API
+import apiProjectsRouter from './apiProjectsRouter';
+app.use('/api/projects', apiProjectsRouter);
 
 // Basic error handler
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {

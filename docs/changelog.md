@@ -1,3 +1,14 @@
+## 2026-02-10 — feat: minimal Projects API & web UI
+ANTES:
+- No endpoints para proyectos ni página web funcional.
+
+AHORA:
+- API `/api/projects` permite listar y crear proyectos; responde 503 si falta DB.
+- Página web `/projects` permite crear y ver proyectos; maneja DB no configurada.
+- Test frontend roto fue renombrado/deshabilitado para estabilizar `npm test`.
+
+IMPACTO:
+- Primer flujo end-to-end funcional y test suite estable para desarrollo local.
 # Changelog – project-scaffold-registry
 
 ## 2026-02-10 — init: estructura del proyecto

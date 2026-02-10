@@ -3,27 +3,29 @@
 # Hoja de ruta – project-scaffold-registry
 # Sprint 1: COMPLETADO (2026-02-10)
 
+
 ## Implementado
 - Scaffold inicial del repo + docs base (30m) [COMPLETADO]
 - Git inicializado y subido a GitHub (10m) [COMPLETADO]
 - Backend bootstrap (Node + TypeScript + Express) (45m) [COMPLETADO]
-	- [DEP: Backend bootstrap (Node + TypeScript + Express)] /health endpoint (10m) [COMPLETADO]
-	- [DEP: Backend bootstrap (Node + TypeScript + Express)] Refactor: Prisma lazy + arranque desacoplado de DB (35m) [COMPLETADO]
-	- [DEP: Backend bootstrap (Node + TypeScript + Express)] Tests de regresión: startup sin Prisma + /health sin DB (20m) [COMPLETADO]
+  - [DEP: Backend bootstrap (Node + TypeScript + Express)] /health endpoint (10m) [COMPLETADO]
+  - [DEP: Backend bootstrap (Node + TypeScript + Express)] Refactor: Prisma lazy + arranque desacoplado de DB (35m) [COMPLETADO]
+  - [DEP: Backend bootstrap (Node + TypeScript + Express)] Tests de regresión: startup sin Prisma + /health sin DB (20m) [COMPLETADO]
 - Higiene repo: .gitignore para dist y caches (5m) [COMPLETADO]
+- API: CRUD mínimo de Project (v1) [PARCIAL: list + create implementados, con tests]
+- Web UI [PARCIAL: página /projects implementada (create + list)]
+
 
 ## Por implementar – CRÍTICAS
-- PostgreSQL integration (Prisma) (60m)
-	- [DEP: PostgreSQL integration (Prisma)] Minimal Project model + migration (45m)
-		- [DEP: Minimal Project model + migration] Tests básicos del modelo Project (30m)
-	- [DEP: PostgreSQL integration (Prisma)] Endpoint /db/health (readiness) (20m)
-- API: CRUD mínimo de Project (v1) (60m)
-	- [DEP: API: CRUD mínimo de Project (v1)] Tests API (supertest) (45m)
+- Endpoint /db/health (readiness) [CRÍTICO: pendiente]
+- API: CRUD mínimo de Project (v1)
+  - [CRÍTICO: pendiente] update (PUT/PATCH), delete (DELETE), get by id (GET /api/projects/:id)
+  - [CRÍTICO: pendiente] Tests API (supertest) para operaciones restantes
+
 
 ## Por implementar – NO CRÍTICAS
-- GitHub OAuth (90m)
-- Import repos (90m)
-- Web UI (90m)
+- GitHub OAuth (NO CRÍTICA)
+- Import repos (NO CRÍTICA)
 
 # Reglas de dependencias (DEP)
 # - La tarea bloqueante va arriba.

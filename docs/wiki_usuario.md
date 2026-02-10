@@ -3,8 +3,14 @@
 ## Qué es esta app
 project-scaffold-registry es un servicio para registrar y consultar proyectos creados con un scaffold, con el objetivo de centralizar estado y metadatos.
 
-## Estado actual
-Todavía no hay interfaz web ni funcionalidades de negocio expuestas (más allá de checks básicos).
+
+## Cómo usar la página de proyectos
+
+- Abre la página de proyectos en desarrollo: http://localhost:5173/projects
+- Para crear un proyecto, escribe un nombre en el campo y haz clic en "Create".
+- Si la base de datos no está configurada, verás el mensaje "Database not configured" y el formulario estará deshabilitado.
+- El listado de proyectos se actualiza automáticamente al crear uno nuevo.
+- El endpoint `/health` sigue funcionando aunque la base de datos no esté disponible.
 
 ## Comprobación rápida: /health
 Existe un endpoint de salud:
@@ -34,17 +40,3 @@ Este endpoint sirve para comprobar que el servidor está levantado y funcionando
 - Integración con GitHub
 - Soporte multiusuario
 
-## QuÃ© es esta app
-project-scaffold-registry es una aplicación web centralizada para gestionar y visualizar proyectos scaffolded.
-
-## CÃ³mo empezar
-Actualmente no hay interfaz de usuario ni interacción disponible.
-
-Nota: El servicio puede iniciarse y responder a la ruta /health aunque la base de datos no esté disponible. Esto permite comprobar fácilmente si la aplicación está funcionando, incluso si hay problemas con la base de datos.
-
-## Funcionalidades
-Funcionalidades previstas (alto nivel):
-  - Listado de proyectos y su estado
-  - Categorías y etiquetas
-  - Integración con GitHub
-  - Soporte multiusuario
