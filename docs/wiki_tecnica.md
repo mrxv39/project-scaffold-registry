@@ -7,9 +7,10 @@
 - **GET /api/projects**: Devuelve 200 y un array de proyectos (ordenados por `createdAt desc`). Si falta `DATABASE_URL`, responde 503 con `{ status: "db_unavailable", reason: "DATABASE_URL missing" }`.
 - **POST /api/projects**: Crea un proyecto (requiere `name`). Si falta `DATABASE_URL`, responde 503 igual que arriba. Si falta `name`, responde 400.
 
-### GET /api/projects/:id
-- Devuelve 200 y el proyecto en formato JSON si existe.
-- Devuelve 404 y `{ status: "not_found" }` si no existe el proyecto.
+
+### DELETE /api/projects/:id
+- Devuelve 204 si el proyecto fue eliminado correctamente.
+- Devuelve 404 y `{ status: "not_found" }` si el proyecto no existe.
 - Devuelve 503 y `{ status: "db_unavailable", reason: "DATABASE_URL missing" }` si la base de datos no está configurada.
 - Usa el patrón Prisma lazy: no importa PrismaClient al cargar el módulo, solo accede a la base de datos cuando se llama al endpoint. No afecta el arranque del servidor.
 

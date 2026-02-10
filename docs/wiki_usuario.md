@@ -11,13 +11,15 @@ project-scaffold-registry es un servicio para registrar y consultar proyectos cr
 - El listado de proyectos se actualiza automáticamente al crear uno nuevo.
 - El endpoint `/health` sigue funcionando aunque la base de datos no esté disponible.
 
-### Consultar un proyecto específico
-Ahora puedes ver un proyecto concreto usando:
-`GET /api/projects/:id`
 
-Esto es útil para enlaces directos o para ver los detalles de un solo proyecto.
+### Consultar o eliminar un proyecto específico
+Puedes ver o eliminar un proyecto concreto usando:
+- `GET /api/projects/:id` para consultar
+- `DELETE /api/projects/:id` para eliminar
+
 Si el proyecto no existe, la respuesta será "not_found".
 Si la base de datos no está configurada, verás un mensaje de "db_unavailable".
+Al eliminar, si el proyecto existe se devuelve 204 (sin contenido); si no existe, 404.
 
 
 ## Comprobación rápida: /health y /db/health

@@ -1,3 +1,13 @@
+# 2026-02-10 — feat: add DELETE /api/projects/:id
+ANTES:
+- No era posible eliminar proyectos vía API.
+
+AHORA:
+- Se puede eliminar un proyecto por id usando DELETE /api/projects/:id.
+- Devuelve 204 si se elimina, 404 si no existe, 503 si falta DATABASE_URL.
+
+IMPACTO:
+- Completa el CRUD mínimo de proyectos y permite limpieza desde la API.
 # 2026-02-10 — feat: add GET /api/projects/:id
 ANTES:
 - Only project list and create endpoints existed.
