@@ -56,3 +56,13 @@ prisma/dev.db-journal
 # Coverage
 # =========================
 coverage/
+
+node_modules/
+
+
+# deps
+node_modules/
+
+
+node_modules/
+
