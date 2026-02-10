@@ -1,8 +1,8 @@
 {
-  "name": "",
-  "category": "",
-  "tags": [],
+  "name": "project-scaffold-registry",
+  "category": "infrastructure",
+  "tags": ["registry", "web", "projects", "scaffold"],
   "status": "PENDING",
   "deployed_url": "",
-  "notes": ""
+  "notes": "Central web app to manage all scaffolded projects (multi-user)."
 }

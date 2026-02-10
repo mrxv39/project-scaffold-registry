@@ -1,13 +1,25 @@
 # Hoja de ruta â€“ project-scaffold-registry3
+# Sprint 1: EN PROGRESO
 
 ## Implementado
-- (vacÃ­o)
+- Project scaffolded
+- Git inicializado y subido a GitHub
 
 ## Por implementar â€“ CRÃTICAS
-- (vacÃ­o)
+- Backend bootstrap (Node + TypeScript + Express) (CRÍTICA) [COMPLETADO]
+	[DEP: Backend bootstrap (Node + TypeScript + Express)] /health endpoint (CRÍTICA) [COMPLETADO]
+		[DEP: Backend bootstrap (Node + TypeScript + Express)] PostgreSQL integration (Prisma) (CRÍTICA)
+			[DEP: PostgreSQL integration (Prisma)] Minimal Project model + migration (CRÍTICA)
+				[DEP: Minimal Project model + migration] Basic tests for Project model (CRÍTICA)
+		[DEP: Backend bootstrap (Node + TypeScript + Express)] NOTA: Prisma integration paused due to startup crash; to be resumed next sprint with lazy-loading approach
+	[DEP: Backend bootstrap (Node + TypeScript + Express)] PostgreSQL integration (Prisma) (CRÍTICA)
+		[DEP: PostgreSQL integration (Prisma)] Minimal Project model + migration (CRÍTICA)
+			[DEP: Minimal Project model + migration] Basic tests for Project model (CRÍTICA)
 
 ## Por implementar â€“ NO CRÃTICAS
-- (vacÃ­o)
+- GitHub OAuth (NO CRÍTICA)
+- Import repos (NO CRÍTICA)
+- Web UI (NO CRÍTICA)
 
 # Reglas de dependencias (DEP)
 # - La tarea bloqueante va arriba.
