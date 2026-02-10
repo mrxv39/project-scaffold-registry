@@ -29,14 +29,14 @@ router.post('/', async (req: Request, res: Response) => {
   if (!isDbAvailable()) {
     return res.status(503).json({ status: 'db_unavailable', reason: 'DATABASE_URL missing' });
   }
-  const { name, category, tags, status, deployed_url, notes } = req.body || {};
+  const { name, category, tags, status, deployedUrl, notes } = req.body || {};
   if (!name || typeof name !== 'string') {
     return res.status(400).json({ error: 'Project name is required' });
   }
   try {
     const prisma = await getPrismaClient();
     const created = await prisma.project.create({
-      data: { name, category, tags, status, deployed_url, notes },
+      data: { name, category, tags, status, deployedUrl, notes },
     });
     res.status(201).json(created);
   } catch (err) {

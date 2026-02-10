@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeAll, afterAll } from "vitest";
-import { describeDb } from "./db";
+import { describeDb } from "../../src/testUtils/describeDb";
 
 describe("describeDb helper", () => {
   const original = process.env.DATABASE_URL;

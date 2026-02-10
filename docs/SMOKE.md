@@ -5,7 +5,9 @@
    - `npm test` (all tests pass)
    - `npm run dev` (or `npm start`)
    - `curl http://localhost:3000/health` → expect 200
-   - (TODO) /db/health will be added in a future sprint to verify database connectivity.
+    - `curl http://localhost:3000/db/health`
+       - Expect 503 and `{ "status": "db_unavailable", "reason": "DATABASE_URL missing" }` if DATABASE_URL is missing
+       - Expect 200 and `{ "status": "ok", "db": "ok" }` if DB is configured and reachable
 
 2. **Frontend**
    - `cd web && npm run dev`
@@ -33,9 +35,10 @@ Quick steps to verify your local environment and DB setup:
 
 5. **Check Dev Server Health**
    - Start the dev server: `npm run dev`
-   - In another terminal, check health endpoint:
-     - `curl http://localhost:3000/health`
-   - You should see a healthy response even if the DB is down.
+    - In another terminal, check health endpoints:
+       - `curl http://localhost:3000/health` (should always return 200 if server is up)
+       - `curl http://localhost:3000/db/health` (returns 200 if DB is up, 503 if not configured or unreachable)
+    - `/health` is DB-independent; `/db/health` checks DB readiness.
 
 ---
 

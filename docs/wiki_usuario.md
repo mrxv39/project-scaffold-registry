@@ -12,17 +12,14 @@ project-scaffold-registry es un servicio para registrar y consultar proyectos cr
 - El listado de proyectos se actualiza automáticamente al crear uno nuevo.
 - El endpoint `/health` sigue funcionando aunque la base de datos no esté disponible.
 
-## Comprobación rápida: /health
-Existe un endpoint de salud:
 
-- `GET /health`
+## Comprobación rápida: /health y /db/health
+Existen dos endpoints de salud:
 
-Este endpoint sirve para comprobar que el servidor está levantado y funcionando.
+- `GET /health`: comprueba que el servidor está levantado (no depende de la base de datos).
+- `GET /db/health`: comprueba si la base de datos está disponible y lista.
 
-
-**Importante:** `/health` responde correctamente incluso si la base de datos no está disponible. Esto permite verificar el servicio sin depender de la DB.
-
-> Nota: `/db/health` estará disponible en próximas versiones para comprobar la conexión con la base de datos.
+Usa `/db/health` para saber si la app puede conectarse a la base de datos (útil para despliegues y monitoreo). Si la base de datos no está configurada o no responde, este endpoint devuelve un error 503.
 
 
 ## Cómo arrancar (nivel usuario técnico)

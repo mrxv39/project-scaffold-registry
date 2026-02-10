@@ -19,6 +19,11 @@ app.get('/health', (req: Request, res: Response) => {
   res.status(200).json({ ok: true });
 });
 
+
+// /db/health endpoint (DB readiness, does not break lazy guarantees)
+import dbHealthRouter from './dbHealthRouter';
+app.use('/db', dbHealthRouter);
+
 // Projects API
 import apiProjectsRouter from './apiProjectsRouter';
 app.use('/api/projects', apiProjectsRouter);

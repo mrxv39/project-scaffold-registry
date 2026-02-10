@@ -2,12 +2,7 @@
 
 
 ## Estado actual
-- Backend bootstrap completado (Node.js + TypeScript + Express).
-- Endpoint `/health` implementado.
-- **Projects API**: endpoints `/api/projects` (GET, POST) disponibles.
-- Web UI: página `/projects` permite crear y listar proyectos.
-- Prisma desacoplado del arranque (lazy initialization).
-- Tests de regresión de arranque y health pasando.
+ Endpoint `/db/health` implementado (readiness de base de datos, responde 200 si la DB está lista, 503 si no).
 ## Projects API
 - **GET /api/projects**: Devuelve 200 y un array de proyectos (ordenados por `createdAt desc`). Si falta `DATABASE_URL`, responde 503 con `{ status: "db_unavailable", reason: "DATABASE_URL missing" }`.
 - **POST /api/projects**: Crea un proyecto (requiere `name`). Si falta `DATABASE_URL`, responde 503 igual que arriba. Si falta `name`, responde 400.
@@ -22,12 +17,8 @@
 - Prisma se inicializa **solo cuando hace falta** (dentro de handlers que lo necesiten), nunca al importar módulos.
 
 ## Prisma “lazy” (decisión clave)
-- No se importa `PrismaClient` en tiempo de carga de módulos.
-- Se usa un accessor (p. ej. `getPrismaClient()`) que hace `await import("@prisma/client")` de forma dinámica.
-- Beneficios:
 	- El servidor arranca aunque Prisma no esté generado o la DB esté caída.
-	- `/health` no depende de DB (sirve para readiness/liveness básicos).
-	- Evita crashes por inicialización temprana de Prisma.
+ - `/db/health` verifica la conexión real a la base de datos, usando el accessor lazy (no afecta el arranque ni la robustez del servidor).
 
 ## Módulos / carpetas (referencia)
 - `src/` código fuente

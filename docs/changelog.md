@@ -1,3 +1,12 @@
+# 2026-02-10 — feat: readiness endpoint /db/health
+ANTES:
+- No endpoint para verificar readiness real de la base de datos.
+
+AHORA:
+- Existe `/db/health` que responde 200 si la DB está lista, 503 si falta o falla.
+
+IMPACTO:
+- Permite readiness checks reales de la base de datos sin romper `/health` ni el arranque lazy.
 ## 2026-02-10 — feat: minimal Projects API & web UI
 ANTES:
 - No endpoints para proyectos ni página web funcional.

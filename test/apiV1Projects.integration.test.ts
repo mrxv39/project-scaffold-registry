@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeAll, afterAll, vi } from 'vitest';
-import { describeDb } from './utils/db';
+import { describeDb } from '../src/testUtils/describeDb';
 import app from '../src/app';
 
 
