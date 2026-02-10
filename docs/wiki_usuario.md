@@ -13,7 +13,10 @@ Existe un endpoint de salud:
 
 Este endpoint sirve para comprobar que el servidor está levantado y funcionando.
 
+
 **Importante:** `/health` responde correctamente incluso si la base de datos no está disponible. Esto permite verificar el servicio sin depender de la DB.
+
+> Nota: `/db/health` estará disponible en próximas versiones para comprobar la conexión con la base de datos.
 
 
 ## Cómo arrancar (nivel usuario técnico)

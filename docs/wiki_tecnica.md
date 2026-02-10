@@ -41,7 +41,14 @@
 	- tests deterministas
 	- arranque sin side-effects
 	- despliegues más robustos
+
 - Mantener `/health` libre de dependencias externas.
+
+## Estrategia de tests de integración
+- Las pruebas de integración que usan Prisma requieren la variable de entorno `DATABASE_URL`.
+- Se utiliza el helper `describeDb()` en `test/utils/db.ts` para envolver los tests dependientes de base de datos.
+- Si `DATABASE_URL` no está presente, estos tests se omiten automáticamente, evitando errores locales y permitiendo que CI corra sin base de datos.
+- El endpoint `/db/health` **no está implementado aún**; los tests relacionados están marcados como TODO o se omiten con `it.skip`.
 
 ## Cómo validar localmente
 - Tests: `npm test`

@@ -5,7 +5,7 @@
    - `npm test` (all tests pass)
    - `npm run dev` (or `npm start`)
    - `curl http://localhost:3000/health` → expect 200
-   - `curl http://localhost:3000/db/health` → expect 200 if DB up, 503 if not
+   - (TODO) /db/health will be added in a future sprint to verify database connectivity.
 
 2. **Frontend**
    - `cd web && npm run dev`

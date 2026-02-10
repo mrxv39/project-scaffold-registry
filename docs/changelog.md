@@ -44,13 +44,12 @@ AHORA:
 IMPACTO:
 - Permite gestionar proyectos en la base de datos y sentar la base para futuras funcionalidades relacionadas con proyectos.
 
-## 2026-02-10 — test: DB integration tests auto-skip without DATABASE_URL
-ANTES:
-- Integration tests could fail or hang when DATABASE_URL was missing.
 
+## 2026-02-10 — test infra stabilization
 AHORA:
-- Added describeDb helper to skip DB-dependent tests automatically.
-- Vitest exits cleanly without watch or open handles.
+- Integration tests auto-skip without DATABASE_URL.
+- Vitest runs in non-watch mode for deterministic CI.
+- Regression tests ensure Express boots without touching Prisma.
 
 IMPACTO:
-- Stable local runs and CI without requiring a database.
+- Stable local development without requiring database setup.
