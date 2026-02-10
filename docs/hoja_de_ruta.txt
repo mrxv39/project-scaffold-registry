@@ -1,6 +1,39 @@
 # Hoja de ruta â€“ project-scaffold-registry3
 # Sprint 1: EN PROGRESO
+# Hoja de ruta – project-scaffold-registry
+# Sprint 1: COMPLETADO (2026-02-10)
 
+## Implementado
+- Scaffold inicial del repo + docs base (30m) [COMPLETADO]
+- Git inicializado y subido a GitHub (10m) [COMPLETADO]
+- Backend bootstrap (Node + TypeScript + Express) (45m) [COMPLETADO]
+	- [DEP: Backend bootstrap (Node + TypeScript + Express)] /health endpoint (10m) [COMPLETADO]
+	- [DEP: Backend bootstrap (Node + TypeScript + Express)] Refactor: Prisma lazy + arranque desacoplado de DB (35m) [COMPLETADO]
+	- [DEP: Backend bootstrap (Node + TypeScript + Express)] Tests de regresión: startup sin Prisma + /health sin DB (20m) [COMPLETADO]
+- Higiene repo: .gitignore para dist y caches (5m) [COMPLETADO]
+
+## Por implementar – CRÍTICAS
+- PostgreSQL integration (Prisma) (60m)
+	- [DEP: PostgreSQL integration (Prisma)] Minimal Project model + migration (45m)
+		- [DEP: Minimal Project model + migration] Tests básicos del modelo Project (30m)
+	- [DEP: PostgreSQL integration (Prisma)] Endpoint /db/health (readiness) (20m)
+- API: CRUD mínimo de Project (v1) (60m)
+	- [DEP: API: CRUD mínimo de Project (v1)] Tests API (supertest) (45m)
+
+## Por implementar – NO CRÍTICAS
+- GitHub OAuth (90m)
+- Import repos (90m)
+- Web UI (90m)
+
+# Reglas de dependencias (DEP)
+# - La tarea bloqueante va arriba.
+# - Las tareas dependientes van justo debajo y llevan:
+#   [DEP: nombre_tarea_padre]
+#
+# Ejemplo:
+# - Importador XML base (CRÍTICA)
+#     [DEP: Importador XML base] Añadir validación de duplicados
+#     [DEP: Importador XML base] Crear tests parsing
 ## Implementado
 - Project scaffolded
 - Git inicializado y subido a GitHub

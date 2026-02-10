@@ -1,26 +1,43 @@
-# Estado actual del proyecto
+# Wiki técnica – project-scaffold-registry
 
-- Backend bootstrap completed (Node.js + TypeScript + Express)
-- /health endpoint implemented
-# Prisma lazy-loading architecture
+## Estado actual
+- Backend bootstrap completado (Node.js + TypeScript + Express).
+- Endpoint `/health` implementado.
+- Prisma desacoplado del arranque (lazy initialization).
+- Tests de regresión de arranque y health pasando.
 
-- PrismaClient is never imported at module load time. Instead, the function `getPrismaClient()` dynamically imports `@prisma/client` only when needed, using `await import("@prisma/client")`.
-- This ensures that app startup and the `/health` endpoint do not touch Prisma or the database at all.
-- The server can start and respond to `/health` even if the Prisma client is not generated or the database is down.
-- Two startup regression tests enforce this:
-	- One test ensures importing and starting the app never touches Prisma or the DB.
-	- Another test mocks the Prisma accessor to throw if called, and verifies `/health` still works.
-- This architecture prevents accidental DB connections or Prisma initialization during startup, making the app robust to missing or broken database state.
-# Wiki tÃ©cnica â€“ project-scaffold-registry3
+## Arquitectura (alto nivel)
+- La app se construye sin tocar base de datos.
+- El arranque del servidor está separado de la construcción del `app` (para testear y para evitar side-effects).
+- Prisma se inicializa **solo cuando hace falta** (dentro de handlers que lo necesiten), nunca al importar módulos.
 
-## Arquitectura
-- (pendiente)
+## Prisma “lazy” (decisión clave)
+- No se importa `PrismaClient` en tiempo de carga de módulos.
+- Se usa un accessor (p. ej. `getPrismaClient()`) que hace `await import("@prisma/client")` de forma dinámica.
+- Beneficios:
+	- El servidor arranca aunque Prisma no esté generado o la DB esté caída.
+	- `/health` no depende de DB (sirve para readiness/liveness básicos).
+	- Evita crashes por inicialización temprana de Prisma.
 
-## MÃ³dulos / carpetas
-- (pendiente)
+## Módulos / carpetas (referencia)
+- `src/` código fuente
+- `src/db/` acceso a datos (incluye el accessor lazy de Prisma)
+- `src/**` rutas/handlers (no deben importar PrismaClient directamente)
+- `src/*.test.ts` tests (Vitest)
 
-## Funcionalidades (lista)
-- (pendiente)
+## Tests que blindan el comportamiento
+- `src/startupRegression.test.ts`
+	- Verifica que el servidor/app responde `/health` con 200 y que no se toca Prisma durante el arranque.
+- `src/startupPrismaMissingRegression.test.ts`
+	- Mockea el accessor de Prisma para que lance error si se llama, y valida que `/health` sigue funcionando.
 
-## Decisiones tÃ©cnicas relevantes
-- (pendiente)
+## Decisiones técnicas relevantes
+- Separar “construir app” vs “escuchar en puerto” para:
+	- tests deterministas
+	- arranque sin side-effects
+	- despliegues más robustos
+- Mantener `/health` libre de dependencias externas.
+
+## Cómo validar localmente
+- Tests: `npm test`
+- Build/typecheck: `npm run build`

@@ -1,4 +1,4 @@
-# Changelog â€“ project-scaffold-registry3
+# Changelog – project-scaffold-registry
 
 ## 2026-02-10 — init: estructura del proyecto
 ANTES:
@@ -8,29 +8,27 @@ AHORA:
 - Archivos base y documentación viva inicializados.
 
 IMPACTO:
-- Se reduce pérdida de contexto y "bugs fantasma".
+- Menos pérdida de contexto y menos “bugs fantasma”.
 
 ## 2026-02-10 — scaffold: registry project
 ANTES:
-- Registry project did not exist.
+- El proyecto registry no existía.
 
 AHORA:
-- Registry project scaffolded using project_scaffold
-- Git repository initialized and pushed
-- Backend base (Node + TS + Express) created
-- Health endpoint available
+- Proyecto scaffolded y repositorio inicializado.
+- Backend base (Node + TS + Express) creado.
+- Endpoint `/health` disponible.
 
 IMPACTO:
-- Solid foundation ready to continue backend work in next sprint
-- No production features yet
+- Base sólida para continuar el backend en el siguiente sprint.
 
-## 2026-02-10 —
+## 2026-02-10 — refactor: make Prisma lazy and decouple startup from DB
 ANTES:
-- The server could fail to start if the database or Prisma client was not ready.
+- El servidor podía fallar al arrancar si la DB o Prisma no estaban listos.
 
 AHORA:
-- The server starts independently of the database.
-- Prisma is initialized lazily only when needed.
+- El servidor arranca independientemente de la DB.
+- Prisma se inicializa de forma lazy solo cuando se necesita.
 
 IMPACTO:
-- Improved startup reliability and safer deployments.
+- Arranque más robusto y despliegues más seguros.
