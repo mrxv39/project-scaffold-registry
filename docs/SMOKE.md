@@ -1,3 +1,21 @@
+# Quick API smoke checks
+
+Copy-paste these commands to verify backend endpoints:
+
+```
+curl http://localhost:3000/health
+curl http://localhost:3000/db/health
+curl http://localhost:3000/api/projects
+```
+
+PowerShell POST example:
+
+```
+Invoke-RestMethod -Method Post `
+   -Uri "http://localhost:3000/api/projects" `
+   -ContentType "application/json" `
+   -Body '{"name":"Smoke-UI","category":"test","tags":["smoke"]}'
+```
 
 # 30-Second Smoke Test
 
@@ -5,9 +23,9 @@
    - `npm test` (all tests pass)
    - `npm run dev` (or `npm start`)
    - `curl http://localhost:3000/health` → expect 200
-    - `curl http://localhost:3000/db/health`
-       - Expect 503 and `{ "status": "db_unavailable", "reason": "DATABASE_URL missing" }` if DATABASE_URL is missing
-       - Expect 200 and `{ "status": "ok", "db": "ok" }` if DB is configured and reachable
+    - `curl http://localhost:3000/db/health` 
+       - Expect **200** and `{ "status": "ok", "db": "ok" }` when the Postgres container (port 55432) is running and DATABASE_URL is set
+       - Expect **503** and `{ "status": "db_unavailable", "reason": "DATABASE_URL missing" }` when DATABASE_URL is missing
 
 2. **Frontend**
    - `cd web && npm run dev`
@@ -21,7 +39,7 @@ Quick steps to verify your local environment and DB setup:
 
 1. **Check DATABASE_URL**
    - Ensure your `.env` file has a valid `DATABASE_URL` for Postgres.
-   - Example: `DATABASE_URL="postgresql://USER:PASSWORD@localhost:5432/project_scaffold_db"`
+   - Example: `DATABASE_URL="postgresql://psr:psr@localhost:55432/project_scaffold_db"` (default for psr-postgres Docker container)
 
 2. **Generate Prisma Client**
    - Run: `npm run prisma:generate`

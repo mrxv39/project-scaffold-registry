@@ -1,8 +1,30 @@
+# Local dev
+
+### Backend
+- URL: http://localhost:3000
+- Start: `npm run dev` (in project root)
+
+### Frontend
+- Vite dev server: http://localhost:5173 or http://localhost:5174
+- Start: `npm run dev` (in /web)
+- Uses relative `/api/*` paths; Vite proxy forwards to backend.
+
+### Troubleshooting
+- If Vite proxy shows ECONNREFUSED: backend is not running on port 3000.
+- If port is in use: `netstat -ano | findstr :PORT` and `taskkill /PID <pid> /F` to free it.
 # Wiki técnica – project-scaffold-registry
 
 
 ## Estado actual
  Endpoint `/db/health` implementado (readiness de base de datos, responde 200 si la DB está lista, 503 si no).
+
+## Setup local de Postgres
+Ver instrucciones en [docs/POSTGRES_SETUP.md](docs/POSTGRES_SETUP.md) para levantar un contenedor Docker de Postgres para desarrollo.
+
+Ejemplo de configuración en `.env`:
+```
+DATABASE_URL="postgresql://psr:psr@localhost:55432/project_scaffold_db"
+```
 ## Projects API
 - **GET /api/projects**: Devuelve 200 y un array de proyectos (ordenados por `createdAt desc`). Si falta `DATABASE_URL`, responde 503 con `{ status: "db_unavailable", reason: "DATABASE_URL missing" }`.
 - **POST /api/projects**: Crea un proyecto (requiere `name`). Si falta `DATABASE_URL`, responde 503 igual que arriba. Si falta `name`, responde 400.

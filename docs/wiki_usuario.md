@@ -1,3 +1,13 @@
+# Crear un proyecto desde la página /projects
+
+1. Abre la página: `/projects` (por ejemplo, http://localhost:5173/projects).
+2. Completa los campos del formulario:
+	- **name**: Nombre del proyecto (obligatorio).
+	- **category**: Categoría del proyecto (opcional).
+	- **tags**: Lista de etiquetas, separadas por comas (opcional).
+3. Haz clic en "Add Project" para crear el proyecto.
+4. El proyecto aparecerá en la lista inmediatamente si la creación fue exitosa.
+5. Si la base de datos no está configurada, el formulario estará deshabilitado y se mostrará un mensaje de error.
 # Wiki de usuario – project-scaffold-registry
 
 ## Qué es esta app

@@ -1,3 +1,15 @@
+# 2026-02-11 — fix: web API path & dev stabilization
+ANTES:
+- El frontend usaba /api/v1/projects y podía fallar por rutas inconsistentes.
+- Proxy de Vite no estaba documentado ni estabilizado.
+
+AHORA:
+- El frontend usa /api/projects (rutas consistentes).
+- Vite proxy configurado y documentado para desarrollo local.
+- Troubleshooting y smoke checks añadidos a la documentación.
+
+IMPACTO:
+- Flujo de desarrollo local más estable y fácil de depurar.
 # 2026-02-10 — feat: add DELETE /api/projects/:id
 ANTES:
 - No era posible eliminar proyectos vía API.
