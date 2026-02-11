@@ -38,6 +38,11 @@ DATABASE_URL="postgresql://psr:psr@localhost:55432/project_scaffold_db"
 
 ## Web UI: /projects
 - Formulario minimal para crear proyectos (campo `name` requerido).
+
+
+## Frontend tests (web/)
+- Vitest configured for the frontend
+- Projects page tests: list success, DB unavailable (503 disables form), empty list, create flow
 - Lista de proyectos cargada desde `/api/projects`.
 - Si la base de datos no está configurada (`DATABASE_URL` ausente), muestra "Database not configured" y deshabilita el formulario.
 ## Arquitectura (alto nivel)

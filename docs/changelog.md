@@ -34,6 +34,16 @@ IMPACTO:
 ANTES:
 - No endpoint para verificar readiness real de la base de datos.
 
+# 2026-02-11 — test: frontend tests for /projects
+ANTES:
+- Frontend had no active test suite for /projects (tests were missing or disabled).
+
+AHORA:
+- Frontend /web uses Vitest and has tests covering /projects list, DB-unavailable state, empty state, and create flow.
+
+IMPACTO:
+- Prevents regressions in the main UX flow and improves confidence to add update/edit features next.
+
 AHORA:
 - Existe `/db/health` que responde 200 si la DB está lista, 503 si falta o falla.
 

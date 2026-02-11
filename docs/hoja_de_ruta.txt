@@ -18,6 +18,8 @@
 - Endpoint /db/health (readiness) (~60–90m) [COMPLETADO]
 - GET /api/projects/:id (~60–90m) [COMPLETADO]
 
+- Blindar frontend tests / UX flow (45m) [COMPLETADO]
+
 
 ## Por implementar – CRÍTICAS
 	- [CRÍTICO: pendiente] update (PUT/PATCH)
