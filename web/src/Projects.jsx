@@ -7,6 +7,41 @@ export default function Projects() {
   const [error, setError] = useState("");
   const [form, setForm] = useState({ name: "", category: "", tags: "" });
   const [submitting, setSubmitting] = useState(false);
+  const [editingId, setEditingId] = useState(null);
+  const [editForm, setEditForm] = useState({ name: "", category: "" });
+  const isDbUnavailable = error && error.toLowerCase().includes("database not configured") || error.toLowerCase().includes("failed to load projects");
+  const handleEdit = (project) => {
+    setEditingId(project.id);
+    setEditForm({ name: project.name, category: project.category || "" });
+  };
+
+  const handleEditChange = (e) => {
+    setEditForm({ ...editForm, [e.target.name]: e.target.value });
+  };
+
+  const handleEditCancel = () => {
+    setEditingId(null);
+    setEditForm({ name: "", category: "" });
+  };
+
+  const handleEditSave = async (id) => {
+    const url = `/api/projects/${id}`;
+    try {
+      const res = await fetch(url, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: editForm.name, category: editForm.category }),
+      });
+      if (!res.ok) {
+        setError(`Failed to update project (HTTP ${res.status})`);
+        return;
+      }
+      await fetchProjects();
+      setEditingId(null);
+    } catch (err) {
+      setError("Failed to update project");
+    }
+  };
 
   const fetchProjects = async () => {
     setLoading(true);
@@ -110,7 +145,29 @@ export default function Projects() {
         <ul>
           {projects.map((project) => (
             <li key={project.id}>
-              <strong>{project.name}</strong> | Status: {project.status || "-"} | Category: {project.category || "-"} | Tags: {Array.isArray(project.tags) ? project.tags.join(", ") : "-"}
+              {editingId === project.id ? (
+                <>
+                  <input
+                    name="name"
+                    value={editForm.name}
+                    onChange={handleEditChange}
+                    disabled={isDbUnavailable}
+                  />
+                  <input
+                    name="category"
+                    value={editForm.category}
+                    onChange={handleEditChange}
+                    disabled={isDbUnavailable}
+                  />
+                  <button onClick={() => handleEditSave(project.id)} disabled={isDbUnavailable}>Save</button>
+                  <button onClick={handleEditCancel}>Cancel</button>
+                </>
+              ) : (
+                <>
+                  <strong>{project.name}</strong> | Status: {project.status || "-"} | Category: {project.category || "-"} | Tags: {Array.isArray(project.tags) ? project.tags.join(", ") : "-"}
+                  <button onClick={() => handleEdit(project)} disabled={isDbUnavailable}>Edit</button>
+                </>
+              )}
             </li>
           ))}
         </ul>

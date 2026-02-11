@@ -1,3 +1,20 @@
+/**
+ * Update a project by id. Returns updated project or null if not found.
+ */
+export async function updateProjectById(id: string, data: Partial<Pick<Project, "name" | "category" | "tags" | "status" | "deployed_url" | "notes">>): Promise<Project | null> {
+  const prisma = await getPrismaClient();
+  try {
+    return await prisma.project.update({ where: { id }, data });
+  } catch (err: any) {
+    // Prisma "record not found" error code
+    const code = err?.code ?? err?.meta?.cause?.code;
+    const msg = String(err?.message || "");
+    if (code === "P2025" || msg.includes("P2025") || msg.toLowerCase().includes("record to update does not exist")) {
+      return null;
+    }
+    throw err;
+  }
+}
 // C:\Users\Usuario\projects\project-scaffold-registry\src\db\projectRepo.ts
 import { getPrismaClient } from "../infrastructure/db/prismaClientFactory";
 import type { Project, Prisma } from "@prisma/client";

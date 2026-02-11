@@ -1,6 +1,13 @@
 // C:\Users\Usuario\projects\project-scaffold-registry\src\apiProjectsRouter.ts
+
 import { Router, type Request, type Response } from "express";
-import { createProject, deleteProjectById, getProjectById, listProjects } from "./db/projectRepo";
+import {
+  createProject,
+  deleteProjectById,
+  getProjectById,
+  listProjects,
+  updateProjectById,
+} from "./db/projectRepo";
 
 const router = Router();
 
@@ -55,9 +62,7 @@ router.post("/", async (req: Request, res: Response) => {
       : "infrastructure";
 
   const status =
-    typeof req.body?.status === "string" && req.body.status.trim()
-      ? req.body.status.trim()
-      : "PENDING";
+    typeof req.body?.status === "string" && req.body.status.trim() ? req.body.status.trim() : "PENDING";
 
   try {
     const created = await createProject({ name, category, status });
@@ -83,6 +88,61 @@ router.get("/:id", async (req: Request, res: Response) => {
     const project = await getProjectById(id);
     if (!project) return res.status(404).json({ status: "not_found" });
     return res.status(200).json(project);
+  } catch (err: any) {
+    if (!process.env.DATABASE_URL) {
+      return respondDbUnavailable(res);
+    }
+    throw err;
+  }
+});
+
+/**
+ * PATCH /api/projects/:id
+ * Body: { name?, category?, tags?, status?, deployed_url?, notes? }
+ */
+router.patch("/:id", async (req: Request, res: Response) => {
+  if (!isDbAvailable()) return respondDbUnavailable(res);
+
+  const id = String(req.params.id || "").trim();
+  if (!id) return res.status(400).json({ status: "bad_request", reason: "id_required" });
+
+  const allowedFields = ["name", "category", "tags", "status", "deployed_url", "notes"] as const;
+
+  const body = req.body && typeof req.body === "object" ? req.body : {};
+  const update: Record<string, unknown> = {};
+
+  for (const key of allowedFields) {
+    if (Object.prototype.hasOwnProperty.call(body, key)) {
+      update[key] = (body as any)[key];
+    }
+  }
+
+  // Validation: body must not be empty
+  if (Object.keys(update).length === 0) {
+    return res.status(400).json({ status: "bad_request", reason: "empty_body" });
+  }
+
+  // Validation: name cannot be empty string
+  if (
+    Object.prototype.hasOwnProperty.call(update, "name") &&
+    (typeof update.name !== "string" || !update.name.trim())
+  ) {
+    return res.status(400).json({ status: "bad_request", reason: "name_required" });
+  }
+
+  if (typeof update.name === "string") update.name = update.name.trim();
+  if (typeof update.category === "string") update.category = update.category.trim();
+  if (typeof update.status === "string") update.status = update.status.trim();
+  if (typeof update.deployed_url === "string") update.deployed_url = update.deployed_url.trim();
+  if (typeof update.notes === "string") update.notes = update.notes.trim();
+  if (Array.isArray(update.tags)) {
+    // keep as-is; repo layer can validate further if needed
+  }
+
+  try {
+    const updated = await updateProjectById(id, update as any);
+    if (!updated) return res.status(404).json({ status: "not_found" });
+    return res.status(200).json(updated);
   } catch (err: any) {
     if (!process.env.DATABASE_URL) {
       return respondDbUnavailable(res);

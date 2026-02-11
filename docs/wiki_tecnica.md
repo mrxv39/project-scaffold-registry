@@ -36,6 +36,10 @@ DATABASE_URL="postgresql://psr:psr@localhost:55432/project_scaffold_db"
 - Devuelve 503 y `{ status: "db_unavailable", reason: "DATABASE_URL missing" }` si la base de datos no está configurada.
 - Usa el patrón Prisma lazy: no importa PrismaClient al cargar el módulo, solo accede a la base de datos cuando se llama al endpoint. No afecta el arranque del servidor.
 
+### PATCH /api/projects/:id
+- Actualiza campos opcionales (`name`, `category`, `tags`, `status`, `deployed_url`, `notes`).
+- 400 si el body está vacío o el nombre es inválido. 404 si no existe. 503 si falta DATABASE_URL. 200 y el proyecto actualizado si OK.
+
 ## Web UI: /projects
 - Formulario minimal para crear proyectos (campo `name` requerido).
 
