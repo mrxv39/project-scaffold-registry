@@ -9,6 +9,8 @@
     "start": "node dist/server.js",
     "test": "vitest run --watch=false",
     "test:watch": "vitest",
+    "test:web": "npm --prefix web test",
+    "test:all": "npm test && npm run test:web",
     "prisma:generate": "prisma generate",
     "prisma:migrate:dev": "prisma migrate dev",
     "prisma:migrate:deploy": "prisma migrate deploy",

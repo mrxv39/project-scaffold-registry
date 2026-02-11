@@ -8,5 +8,11 @@ export default defineConfig({
     isolate: true,
     pool: 'forks',
     detectOpenHandles: true,
+    exclude: [
+      "web/**",
+      "web/**/*",
+      "dist/**",
+      "**/dist/**"
+    ],
   },
 });

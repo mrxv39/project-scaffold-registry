@@ -40,7 +40,9 @@ logs/
 # =========================
 # Project-specific ignores
 # =========================
-web/
+web/dist/
+web/node_modules/
+web/.vite/
 .github/
 scripts/
 test/setup.ts
